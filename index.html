@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天玑模拟器 - 官网</title>
+  <style>
+    /* 定义 CSS 变量 */
+    :root {
+      --main-color: #B8D1EF;
+      --text-color: #333;
+      --bg-color: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+    }
+
+    /* 导航栏样式 */
+    nav {
+      background-color: var(--main-color);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* 英雄区域样式 */
+    .hero {
+      height: 100vh;
+      background-color: var(--main-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero button {
+      padding: 0.8rem 2rem;
+      border: none;
+      background-color: white;
+      color: var(--main-color);
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* 产品服务展示卡样式 */
+    .services {
+      padding: 3rem 1rem;
+    }
+
+    .services h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .service-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      border: 1px solid #ddd;
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 5px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 客户案例展示轮播图样式 */
+    .testimonials {
+      padding: 3rem 1rem;
+      background-color: #f9f9f9;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      margin: 2rem;
+    }
+    /* 简易轮播效果依赖的基础设置，JavaScript 配合实现切换，当前默认显示首个 */
+    .testimonial-slider {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .testimonial-item {
+      min-width: 100%;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* 页脚样式 */
+    footer {
+      background-color: var(--main-color);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .social-icons a {
+      color: white;
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .service-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <nav>
+    <span class="hamburger" onclick="toggleMenu()">☰</span>
+    <ul id="nav-menu">
+      <li><a href="#">首页</a></li>
+      <li><a href="#">天玑模拟器</a></li>
+      <li><a href="#">使用教程</a></li>
+      <li><a href="#">联系我们</a></li>
+    </ul>
+  </nav>
+
+  <!-- 英雄区域 -->
+  <section class="hero">
+    <h1>天玑模拟器</h1>
+    <p>探索天玑模拟器、Winlator 及盖世的使用方法</p>
+    <button>了解更多</button>
+  </section>
+
+  <!-- 产品服务展示 -->
+  <section class="services">
+    <h2>核心业务</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>天玑模拟器</h3>
+        <p>天玑模拟器相关介绍内容。</p>
+      </div>
+      <div class="service-card">
+        <h3>Winlator 使用说明</h3>
+        <p>学习如何上手使用 Winlator。</p>
+      </div>
+      <div class="service-card">
+        <h3>盖世 使用说明</h3>
+        <p>获取盖世的详尽使用指导。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 客户案例展示 -->
+  <section class="testimonials">
+    <h2>案例展示</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial-item">
+        <p>用户使用天玑模拟器的案例描述 1。</p>
+      </div>
+      <div class="testimonial-item">
+        <p>用户使用 Winlator 的案例描述 2。</p>
+      </div>
+      <div class="testimonial-item">
+        <p>用户使用盖世的案例描述 3。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>联系我们：contact@tianjisimulator.com</p>
+    <div class="social-icons">
+      <a href="#">🔗</a>
+      <a href="#">🐦</a>
+      <a href="#">📘</a>
+    </div>
+    <p>&copy; 2025 天玑模拟器。保留所有权利。</p>
+  </footer>
+
+  <script>
+    // 汉堡菜单切换逻辑
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      menu.classList.toggle('active');
+    }
+    // 轮播图简易切换逻辑，每隔 3 秒切换，按需扩展或修改
+    const slider = document.querySelector('.testimonial-slider');
+    const items = document.querySelectorAll('.testimonial-item');
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % items.length;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    }, 3000);
+  </script>
+</body>
+
+</html>

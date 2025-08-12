@@ -23,34 +23,50 @@
       font-family: Arial, sans-serif;
       color: var(--text-color);
       background-color: var(--bg-color);
+      margin-left: 60px; /* 为侧边导航留出空间 */
     }
 
-    /* 导航栏样式 */
-    nav {
-      background-color: var(--main-color);
-      padding: 1rem;
-      position: sticky;
+    /* 侧边导航栏样式 */
+    .sidebar-nav {
+      position: fixed;
+      left: 0;
       top: 0;
+      height: 100vh;
+      width: 60px;
+      background-color: var(--main-color);
       z-index: 1000;
-    }
-
-    nav ul {
-      list-style: none;
       display: flex;
-      justify-content: space-around;
+      flex-direction: column;
       align-items: center;
+      padding-top: 20px;
     }
 
-    nav ul li a {
+    .sidebar-nav ul {
+      list-style: none;
+      width: 100%;
+      text-align: center;
+    }
+
+    .sidebar-nav ul li {
+      margin: 20px 0;
+    }
+
+    .sidebar-nav ul li a {
       color: white;
       text-decoration: none;
+      display: block;
+      padding: 10px 0;
     }
 
     .hamburger {
       display: none;
       font-size: 1.5rem;
-      color: white;
+      color: var(--text-color);
       cursor: pointer;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1001;
     }
 
     /* 英雄区域样式 */
@@ -122,7 +138,7 @@
       text-align: center;
       margin: 2rem;
     }
-    /* 简易轮播效果依赖的基础设置，JavaScript 配合实现切换，当前默认显示首个 */
+    /* 简易轮播效果依赖的基础设置 */
     .testimonial-slider {
       display: flex;
       overflow: hidden;
@@ -150,15 +166,24 @@
       text-decoration: none;
     }
 
+    .contact-info {
+      margin-bottom: 1rem;
+    }
+
     /* 移动端适配 */
     @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
+      body {
+        margin-left: 0;
       }
 
-      nav ul.active {
-        display: flex;
+      .sidebar-nav {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        width: 200px;
+      }
+
+      .sidebar-nav.active {
+        transform: translateX(0);
       }
 
       .hamburger {
@@ -173,14 +198,15 @@
 </head>
 
 <body>
-  <!-- 导航栏 -->
-  <nav>
-    <span class="hamburger" onclick="toggleMenu()">☰</span>
-    <ul id="nav-menu">
+  <!-- 移动端汉堡菜单按钮 -->
+  <span class="hamburger" onclick="toggleMenu()">☰</span>
+  
+  <!-- 侧边导航栏 -->
+  <nav class="sidebar-nav" id="sidebar-nav">
+    <ul>
       <li><a href="#">首页</a></li>
       <li><a href="#">天玑模拟器</a></li>
       <li><a href="#">使用教程</a></li>
-      <li><a href="#">联系我们</a></li>
     </ul>
   </nav>
 
@@ -228,7 +254,9 @@
 
   <!-- 页脚 -->
   <footer>
-    <p>联系我们：contact@tianjisimulator.com</p>
+    <div class="contact-info">
+      <p>加入QQ群：701437830</p>
+    </div>
     <div class="social-icons">
       <a href="#">🔗</a>
       <a href="#">🐦</a>
@@ -238,12 +266,12 @@
   </footer>
 
   <script>
-    // 汉堡菜单切换逻辑
+    // 侧边栏菜单切换逻辑
     function toggleMenu() {
-      const menu = document.getElementById('nav-menu');
+      const menu = document.getElementById('sidebar-nav');
       menu.classList.toggle('active');
     }
-    // 轮播图简易切换逻辑，每隔 3 秒切换，按需扩展或修改
+    // 轮播图简易切换逻辑，每隔 3 秒切换
     const slider = document.querySelector('.testimonial-slider');
     const items = document.querySelectorAll('.testimonial-item');
     let index = 0;
